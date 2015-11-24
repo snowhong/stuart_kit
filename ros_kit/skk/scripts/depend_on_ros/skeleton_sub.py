@@ -43,7 +43,7 @@ class Skeleton():
                         self.uta.users[count].uid.projective[count].y = head.position.y
                         self.uta.users[count].uid.projective[count].z = head.position.z
                         self.uta.numUsers = len(frame.users)
-                        pub.publish()
+                        pub.publish(self.uta)
 
 if __name__ == '__main__':
     rospy.init_node('skeleton_server')
