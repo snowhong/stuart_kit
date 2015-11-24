@@ -51,10 +51,8 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate messages in the 'msg' folder
  add_message_files(
    FILES
-   Num.msg
-   TrackerUser.msg
-   TrackerUserArray.msg
-#   Message2.msg
+   UserTrackerPose.msg
+   UserTrackerPoseArray.msg
  )
 
 ## Generate services in the 'srv' folder
@@ -74,6 +72,7 @@ find_package(catkin REQUIRED COMPONENTS
  generate_messages(
    DEPENDENCIES
    std_msgs
+   geometry_msgs
  )
 
 ################################################
