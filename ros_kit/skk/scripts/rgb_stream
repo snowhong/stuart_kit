@@ -51,4 +51,3 @@ while(1):
     cv2.imshow('rgb', rgb)
     
 openni2.unload()
-

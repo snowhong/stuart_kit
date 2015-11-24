@@ -12,9 +12,12 @@ from sensor_msgs.msg import Image
 class Face_Service():
 	def __init__(self):
 		self.bridge = CvBridge()
-		self.image_sub = rospy.Subscriber("/camera/rgb/image_raw", Image, self.image_callback, queue_size = 1)
+		self.image_sub = rospy.Subscriber("/usb_cam/image_raw", Image, self.image_callback, queue_size = 10)
+                #self.head_sub = rospy.Subscriber("/skeleton",UserTrackerPoseArray, self.utpa_callback, queue_size = 10)
 		self.cascPath = os.path.join("/home/robot/Robot/src/backup/ros_kit/skk/config/","haarcascade_frontalface_default.xml")
 		self.faceCascade = cv2.CascadeClassifier(self.cascPath)
+
+        def utpa_callback(self, pose):
 
 	def image_callback(self, image):
 		try:
