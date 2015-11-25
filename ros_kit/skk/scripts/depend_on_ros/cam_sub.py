@@ -6,6 +6,7 @@ import roslib
 import time
 import rospkg
 from std_msgs.msg import Bool
+from std_msgs.msg import Int8
 from geometry_msgs.mgs import Vector3
 from cv_bridge import CvBridge, CvBridgeError
 from sensor_msgs.msg import Image
@@ -21,6 +22,9 @@ class Face_Service():
                 haar_data = rospack.get_path('skk') + '/config'
                 self.cascPath = os.path.join(haar_data,"haarcascade_frontalface_default.xml")
                 self.faceCascade = cv2.CascadeClassifier(self.cascPath)
+
+                self.pub = rospy.Publisher('face_detected', Int8, queue_size=10)
+                self.rate = rospy.Rate(10)
 
 
         def utpa_callback(self, user_pose_array):
@@ -56,6 +60,8 @@ class Face_Service():
 
                 except CvBridgeError, e:
                     print e
+
+                    self.pub.publish(len(pi))
 
         def detect_faces(self, image):
                 _scale_Factor=1.2
